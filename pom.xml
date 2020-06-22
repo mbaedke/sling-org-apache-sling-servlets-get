@@ -185,6 +185,7 @@
             <groupId>org.apache.jackrabbit.vault</groupId>
             <artifactId>org.apache.jackrabbit.vault</artifactId>
             <version>3.4.5-SNAPSHOT</version>
+            <optional>true</optional>
         </dependency>
         <!-- Testing -->
         <dependency>
