@@ -29,12 +29,14 @@ import org.apache.jackrabbit.vault.packaging.ExportOptions;
 import org.apache.jackrabbit.vault.packaging.JcrPackageManager;
 import org.apache.jackrabbit.vault.packaging.PackageProperties;
 import org.apache.jackrabbit.vault.packaging.Packaging;
+import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.SlingException;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceNotFoundException;
 import org.apache.sling.api.resource.ResourceUtil;
+import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.servlets.get.impl.helpers.Renderer;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -90,8 +92,8 @@ public class NodeExportGetServlet extends DefaultGetServlet {
                 if (ResourceUtil.isNonExistingResource(r)) {
                     throw new ResourceNotFoundException("No data to render.");
                 }
-                resp.setContentType(req.getResponseContentType());
-                resp.setCharacterEncoding("UTF-8");
+                resp.setContentType("application/xml");
+                resp.setHeader("Content-Disposition", "inline");
 
                 Session session = req.getResourceResolver().adaptTo(Session.class);
                 JcrPackageManager jcrPackageManager = packaging.getPackageManager(session);
